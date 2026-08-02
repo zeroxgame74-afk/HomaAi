@@ -26,7 +26,6 @@
             align-items: center;
             justify-content: center;
             direction: rtl;
-            overflow: hidden;
         }
 
         .homa-container {
@@ -60,7 +59,7 @@
             left: -30%;
             width: 120%;
             height: 150%;
-            background: radial-gradient(circle, rgba(70, 130, 255, 0.05), transparent 70%);
+            background: radial-gradient(circle, rgba(70, 130, 255, 0.08), transparent 70%);
             pointer-events: none;
             z-index: 0;
             animation: pulse 8s ease-in-out infinite;
@@ -71,189 +70,43 @@
             50% { transform: scale(1.2); opacity: 0.8; }
         }
 
-        /* ========== صفحه اصلی (خانه) ========== */
-        .home-section {
-            flex: 1;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 2rem 1rem;
-            min-height: 80vh;
-            transition: all 0.5s ease;
-        }
-
-        .home-section.hidden {
-            display: none;
-        }
-
-        .home-logo {
-            font-size: 6rem;
-            color: #4a7cff;
-            filter: drop-shadow(0 0 60px rgba(74, 124, 255, 0.3));
-            animation: float 3s ease-in-out infinite;
-            margin-bottom: 1rem;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .home-title {
-            font-size: 4rem;
-            background: linear-gradient(135deg, #b0caff, #6a9aff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
-        }
-
-        .home-subtitle {
-            font-size: 1.4rem;
-            color: #8a9fc9;
-            font-weight: 400;
-            margin-bottom: 2.5rem;
-            max-width: 600px;
-        }
-
-        /* ========== ویژگی‌ها ========== */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            max-width: 900px;
-            width: 100%;
-            margin-bottom: 2.5rem;
-        }
-
-        .feature-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 20px;
-            padding: 1.5rem 1rem;
-            transition: all 0.3s ease;
-            cursor: default;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            background: rgba(74, 124, 255, 0.05);
-            border-color: rgba(74, 124, 255, 0.2);
-            box-shadow: 0 10px 40px rgba(74, 124, 255, 0.05);
-        }
-
-        .feature-card i {
-            font-size: 2.5rem;
-            color: #4a7cff;
-            margin-bottom: 0.8rem;
-            display: block;
-        }
-
-        .feature-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .feature-card p {
-            font-size: 0.85rem;
-            color: #8a9fc9;
-            font-weight: 400;
-            line-height: 1.6;
-        }
-
-        /* ========== دکمه شروع ========== */
-        .start-btn {
-            background: linear-gradient(135deg, #3a6aff, #1f4ad0);
-            border: none;
-            border-radius: 60px;
-            padding: 1rem 3rem;
-            color: #fff;
-            font-family: 'Vazir', sans-serif;
-            font-weight: 700;
-            font-size: 1.3rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 60px rgba(58, 106, 255, 0.3);
-        }
-
-        .start-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 80px rgba(58, 106, 255, 0.5);
-        }
-
-        .start-btn i {
-            font-size: 1.5rem;
-        }
-
-        /* ========== بخش چت (پنهان در ابتدا) ========== */
-        .chat-section {
-            flex: 1;
-            z-index: 2;
-            display: none;
-            flex-direction: column;
-            min-height: 0;
-            height: 100%;
-        }
-
-        .chat-section.active {
-            display: flex;
-        }
-
-        /* هدر چت */
-        .chat-header {
+        /* ========== هدر ========== */
+        .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 0.8rem;
-            margin-bottom: 1rem;
+            z-index: 2;
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
             border-bottom: 1px solid rgba(255,255,255,0.05);
             flex-shrink: 0;
             flex-wrap: wrap;
             gap: 0.5rem;
         }
 
-        .chat-header .logo-area {
+        .logo-area {
             display: flex;
             align-items: center;
             gap: 0.75rem;
         }
 
-        .chat-header .logo-icon {
-            font-size: 2rem;
+        .logo-icon {
+            font-size: 2.5rem;
             color: #4a7cff;
+            filter: drop-shadow(0 0 20px rgba(74, 124, 255, 0.3));
+            animation: float 3s ease-in-out infinite;
         }
 
-        .chat-header .logo-text {
-            font-size: 1.8rem;
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .logo-text {
+            font-size: 2rem;
             background: linear-gradient(135deg, #b0caff, #6a9aff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-
-        .back-home-btn {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 40px;
-            padding: 0.4rem 1.2rem;
-            color: #8a9fc9;
-            font-family: 'Vazir', sans-serif;
-            font-weight: 400;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .back-home-btn:hover {
-            background: rgba(255,255,255,0.1);
-            color: #fff;
         }
 
         .status-badge {
@@ -261,16 +114,16 @@
             align-items: center;
             gap: 0.5rem;
             background: rgba(74, 124, 255, 0.15);
-            padding: 0.2rem 1rem;
+            padding: 0.3rem 1rem;
             border-radius: 60px;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: #4ade80;
             border: 1px solid rgba(74, 124, 255, 0.2);
         }
 
         .status-dot {
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             background: #4ade80;
             animation: blink 1.5s ease-in-out infinite;
@@ -281,7 +134,111 @@
             50% { opacity: 0.2; }
         }
 
-        /* پیام‌ها */
+        /* ========== صفحه خانه ========== */
+        .home-section {
+            flex: 1;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 1rem;
+            min-height: 60vh;
+        }
+
+        .home-title {
+            font-size: 4.5rem;
+            background: linear-gradient(135deg, #b0caff, #4a7cff, #6a9aff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 60px rgba(74, 124, 255, 0.1);
+        }
+
+        .home-subtitle {
+            font-size: 1.3rem;
+            color: #8a9fc9;
+            font-weight: 400;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            line-height: 1.8;
+        }
+
+        /* ========== ویژگی‌ها ========== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            width: 100%;
+            margin-bottom: 2.5rem;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px;
+            padding: 1.8rem 1.2rem;
+            transition: all 0.4s ease;
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(74, 124, 255, 0.05), transparent);
+            opacity: 0;
+            transition: 0.4s;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(74, 124, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(74, 124, 255, 0.1);
+        }
+
+        .feature-card i {
+            font-size: 2.8rem;
+            color: #4a7cff;
+            margin-bottom: 0.8rem;
+            display: block;
+            filter: drop-shadow(0 0 20px rgba(74, 124, 255, 0.2));
+        }
+
+        .feature-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            color: #f0f3fa;
+        }
+
+        .feature-card p {
+            font-size: 0.85rem;
+            color: #8a9fc9;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        /* ========== بخش چت ========== */
+        .chat-section {
+            flex: 1;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            margin-top: 0.5rem;
+        }
+
         .messages-container {
             flex: 1;
             overflow-y: auto;
@@ -290,6 +247,8 @@
             flex-direction: column;
             gap: 0.8rem;
             margin-bottom: 0.8rem;
+            min-height: 200px;
+            max-height: 50vh;
         }
 
         .messages-container::-webkit-scrollbar {
@@ -354,7 +313,7 @@
             30% { transform: translateY(-8px); opacity: 1; }
         }
 
-        /* ورودی */
+        /* ========== ورودی ========== */
         .input-area {
             display: flex;
             gap: 0.8rem;
@@ -367,11 +326,11 @@
             background: rgba(255,255,255,0.05);
             border: 1px solid rgba(255,255,255,0.08);
             border-radius: 60px;
-            padding: 0.8rem 1.5rem;
+            padding: 0.9rem 1.5rem;
             color: #f0f6ff;
             font-family: 'Vazir', sans-serif;
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 1rem;
             outline: none;
             transition: 0.3s;
         }
@@ -391,11 +350,11 @@
             background: linear-gradient(135deg, #3a6aff, #1f4ad0);
             border: none;
             border-radius: 60px;
-            padding: 0 1.5rem;
+            padding: 0 1.8rem;
             color: #fff;
             font-family: 'Vazir', sans-serif;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 1.1rem;
             display: flex;
             align-items: center;
             gap: 0.6rem;
@@ -406,7 +365,7 @@
         }
 
         .input-area button:hover:not(:disabled) {
-            transform: scale(1.02);
+            transform: scale(1.03);
             box-shadow: 0 0 60px rgba(58, 106, 255, 0.4);
         }
 
@@ -415,7 +374,7 @@
             cursor: not-allowed;
         }
 
-        /* فوتر */
+        /* ========== فوتر ========== */
         .footer {
             z-index: 2;
             display: flex;
@@ -425,7 +384,7 @@
             gap: 0.8rem;
             border-top: 1px solid rgba(255,255,255,0.04);
             padding-top: 0.8rem;
-            margin-top: 0.5rem;
+            margin-top: 0.8rem;
             color: #7a8bb8;
             font-weight: 400;
             font-size: 0.8rem;
@@ -444,49 +403,59 @@
             transform: translateY(-2px);
         }
 
-        /* ریسپانسیو */
+        /* ========== ریسپانسیو ========== */
         @media (max-width: 700px) {
             .homa-container { padding: 1rem; }
-            .home-title { font-size: 2.5rem; }
+            .home-title { font-size: 2.8rem; }
             .home-subtitle { font-size: 1rem; }
-            .home-logo { font-size: 4rem; }
+            .logo-text { font-size: 1.5rem; }
+            .logo-icon { font-size: 2rem; }
             .features-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
-            .feature-card { padding: 1rem 0.8rem; }
-            .feature-card i { font-size: 1.8rem; }
+            .feature-card { padding: 1.2rem 0.8rem; }
+            .feature-card i { font-size: 2rem; }
             .feature-card h3 { font-size: 0.9rem; }
             .feature-card p { font-size: 0.75rem; }
-            .start-btn { padding: 0.8rem 2rem; font-size: 1rem; }
-            .chat-header .logo-text { font-size: 1.3rem; }
             .message { max-width: 95%; font-size: 0.9rem; padding: 0.7rem 1rem; }
-            .input-area button { padding: 0 1rem; font-size: 0.85rem; }
-            .input-area input { font-size: 0.85rem; padding: 0.7rem 1rem; }
-            .status-badge { font-size: 0.65rem; padding: 0.1rem 0.6rem; }
+            .input-area button { padding: 0 1.2rem; font-size: 0.9rem; }
+            .input-area input { font-size: 0.9rem; padding: 0.7rem 1rem; }
+            .status-badge { font-size: 0.7rem; padding: 0.2rem 0.8rem; }
+            .messages-container { max-height: 40vh; min-height: 150px; }
         }
 
         @media (max-width: 450px) {
-            .features-grid { grid-template-columns: 1fr 1fr; }
-            .home-title { font-size: 2rem; }
+            .features-grid { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+            .home-title { font-size: 2.2rem; }
+            .feature-card { padding: 0.8rem 0.5rem; }
         }
     </style>
 </head>
 <body>
     <div class="homa-container">
-        <!-- ========== صفحه اصلی (خانه) ========== -->
-        <section class="home-section" id="homeSection">
-            <div class="home-logo">
-                <i class="fas fa-brain"></i>
+        <!-- ========== هدر ========== -->
+        <header class="header">
+            <div class="logo-area">
+                <i class="fas fa-brain logo-icon"></i>
+                <span class="logo-text">HomaAi</span>
             </div>
+            <div class="status-badge">
+                <span class="status-dot"></span>
+                <span id="statusText">آنلاین</span>
+            </div>
+        </header>
+
+        <!-- ========== صفحه خانه ========== -->
+        <section class="home-section" id="homeSection">
             <h1 class="home-title">HomaAi</h1>
             <p class="home-subtitle">
-                هوش مصنوعی پیشرفته با قابلیت پاسخ‌گویی به هر سوالی
+                🤖 هوش مصنوعی پیشرفته با مغز GPT-4o<br>
+                هر سوالی داری، از هر موضوعی، بپرس!
             </p>
 
-            <!-- ویژگی‌ها -->
             <div class="features-grid">
                 <div class="feature-card">
                     <i class="fas fa-robot"></i>
                     <h3>هوش مصنوعی واقعی</h3>
-                    <p>با مغز GPT-4o، به هر سوالی جواب میده</p>
+                    <p>با مغز GPT-4o به هر سوالی جواب میده</p>
                 </div>
                 <div class="feature-card">
                     <i class="fas fa-language"></i>
@@ -504,11 +473,6 @@
                     <p>با هر مکالمه، هوشمندتر میشه</p>
                 </div>
                 <div class="feature-card">
-                    <i class="fas fa-lock"></i>
-                    <h3>امن و رایگان</h3>
-                    <p>کاملاً رایگان و بدون نیاز به ثبت‌نام</p>
-                </div>
-                <div class="feature-card">
                     <i class="fas fa-code"></i>
                     <h3>پشتیبانی از کدنویسی</h3>
                     <p>کدهای برنامه‌نویسی رو برات مینویسه</p>
@@ -523,44 +487,24 @@
                     <h3>خلاقیت بی‌نهایت</h3>
                     <p>شعر، داستان و ایده‌های خلاقانه</p>
                 </div>
+                <div class="feature-card">
+                    <i class="fas fa-lock"></i>
+                    <h3>امن و رایگان</h3>
+                    <p>کاملاً رایگان و بدون نیاز به ثبت‌نام</p>
+                </div>
             </div>
-
-            <button class="start-btn" id="startChatBtn">
-                <i class="fas fa-comment-dots"></i>
-                شروع مکالمه
-                <i class="fas fa-arrow-left"></i>
-            </button>
         </section>
 
         <!-- ========== بخش چت ========== -->
         <section class="chat-section" id="chatSection">
-            <!-- هدر چت -->
-            <div class="chat-header">
-                <div class="logo-area">
-                    <i class="fas fa-brain logo-icon"></i>
-                    <span class="logo-text">HomaAi</span>
-                </div>
-                <div style="display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap;">
-                    <button class="back-home-btn" id="backHomeBtn">
-                        <i class="fas fa-home"></i> خانه
-                    </button>
-                    <div class="status-badge">
-                        <span class="status-dot"></span>
-                        <span>آنلاین</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- پیام‌ها -->
             <div class="messages-container" id="messagesContainer">
                 <div class="message ai">
                     <i class="fas fa-robot" style="margin-left: 0.5rem; color: #4a7cff;"></i>
                     سلام! من HomaAi هستم. 🧠<br>
-                    هر سوالی داری، از هر موضوعی، بپرس! 
+                    هر چیزی که دوست داری بپرس! از علم و فناوری تا فلسفه و هنر.
                 </div>
             </div>
 
-            <!-- ورودی -->
             <div class="input-area">
                 <input type="text" id="userInput" placeholder="سوالت رو اینجا بپرس..." />
                 <button id="sendButton">
@@ -578,7 +522,7 @@
                 <i class="fab fa-youtube"></i>
             </div>
             <div>
-                <i class="fas fa-crown"></i> HomaAi Pro • هوش مصنوعی پیشرفته
+                <i class="fas fa-crown"></i> HomaAi Pro • قدرت گرفته از GPT-4o
             </div>
         </footer>
     </div>
@@ -586,44 +530,20 @@
     <!-- ============ مغز هوش مصنوعی ============ -->
     <script>
         // =============================================
-        //  HomaAi Pro - با API هوش مصنوعی رایگان
-        //  + صفحه خانه با معرفی ویژگی‌ها
+        //  HomaAi Pro - هوش مصنوعی واقعی با API رایگان
+        //  پاسخ به هر سوالی از هر موضوعی
         // =============================================
 
-        // ============= المان‌ها =============
-        const homeSection = document.getElementById('homeSection');
-        const chatSection = document.getElementById('chatSection');
-        const startBtn = document.getElementById('startChatBtn');
-        const backHomeBtn = document.getElementById('backHomeBtn');
         const messagesContainer = document.getElementById('messagesContainer');
         const userInput = document.getElementById('userInput');
         const sendButton = document.getElementById('sendButton');
+        const statusText = document.getElementById('statusText');
 
         let isProcessing = false;
         let chatHistory = [];
 
-        // ============= API =============
+        // ============= API رایگان =============
         const API_URL = 'https://api.akhbari.workers.dev/chat/completions';
-
-        // ============= رفتن به چت =============
-        function goToChat() {
-            homeSection.classList.add('hidden');
-            chatSection.classList.add('active');
-            userInput.focus();
-            
-            // پیام خوش‌آمدگویی اگر اولین باره
-            if (chatHistory.length === 0) {
-                setTimeout(() => {
-                    addMessage('ai', '🧠 من HomaAi هستم! از علم و فناوری تا فلسفه و هنر، هر چیزی بپرسی جواب میدم!');
-                }, 500);
-            }
-        }
-
-        // ============= برگشت به خانه =============
-        function goToHome() {
-            chatSection.classList.remove('active');
-            homeSection.classList.remove('hidden');
-        }
 
         // ============= پیام‌ها =============
         function addMessage(type, content) {
@@ -674,9 +594,11 @@
                         content: `شما یک دستیار هوشمند و حرفه‌ای به نام HomaAi هستید.
                         شما به فارسی پاسخ می‌دهید.
                         پاسخ‌های شما دقیق، مفید و کامل هستند.
-                        شما در همه زمینه‌ها تخصص دارید.
+                        شما در همه زمینه‌ها تخصص دارید: علم، فناوری، هنر، فلسفه، پزشکی، تاریخ، و هر موضوع دیگری.
+                        اگر پاسخ سوالی را نمی‌دانید، صادقانه بگویید که نمی‌دانید.
                         لحن شما دوستانه و حرفه‌ای است.
-                        پاسخ‌ها را مختصر و مفید بدهید.`
+                        پاسخ‌ها را مختصر و مفید بدهید.
+                        همیشه با احترام و ادب پاسخ دهید.`
                     },
                     ...chatHistory.slice(-10),
                     { role: 'user', content: userMessage }
@@ -709,12 +631,12 @@
                 }
 
             } catch (error) {
-                console.error('خطا:', error);
+                console.error('خطا در ارتباط با API:', error);
                 return null;
             }
         }
 
-        // ============= پاسخ جایگزین =============
+        // ============= پاسخ جایگزین (وقتی API کار نکنه) =============
         function getFallbackResponse(input) {
             const lowerInput = input.toLowerCase();
             
@@ -725,6 +647,8 @@
                 'چه کاری بلدی': 'می‌تونم به سوالات علمی، ریاضی، برنامه‌نویسی، فلسفی و کلی موضوع دیگه جواب بدم!',
                 'خداحافظ': 'خداحافظ! خوشحال شدم کمک کنم. 👋',
                 'ممنون': 'خواهش می‌کنم! هر وقت نیاز داشتی من اینجام.',
+                'ریاضی': 'ریاضی رو دوست دارم! هر معادله‌ای داری بپرس.',
+                'برنامه نویسی': 'آه! برنامه‌نویسی عالیه. کدت رو بفرست تا کمکت کنم.',
             };
             
             for (const [key, value] of Object.entries(fallbacks)) {
@@ -748,6 +672,7 @@
             userInput.disabled = true;
 
             showTyping();
+            statusText.textContent = 'در حال فکر کردن...';
 
             try {
                 let response = await getAIResponse(message);
@@ -758,11 +683,13 @@
                 
                 removeTyping();
                 addMessage('ai', response);
+                statusText.textContent = 'آنلاین';
 
             } catch (error) {
                 removeTyping();
                 const fallback = getFallbackResponse(message);
                 addMessage('ai', fallback);
+                statusText.textContent = 'آنلاین';
                 console.error('خطا:', error);
             } finally {
                 isProcessing = false;
@@ -773,8 +700,6 @@
         }
 
         // ============= رویدادها =============
-        startBtn.addEventListener('click', goToChat);
-        backHomeBtn.addEventListener('click', goToHome);
         sendButton.addEventListener('click', handleSend);
         userInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter' && !e.shiftKey) {
@@ -783,16 +708,40 @@
             }
         });
 
+        // ============= تست اتصال =============
+        async function testConnection() {
+            try {
+                const test = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        model: 'gpt-4o-mini',
+                        messages: [{ role: 'user', content: 'سلام' }],
+                        max_tokens: 5
+                    })
+                });
+                
+                if (test.ok) {
+                    console.log('✅ API متصل است!');
+                    statusText.textContent = 'آنلاین';
+                } else {
+                    console.log('⚠️ API در دسترس نیست، از حالت آفلاین استفاده میکنم.');
+                    statusText.textContent = 'آفلاین ⚠️';
+                }
+            } catch (e) {
+                console.log('⚠️ اتصال به API برقرار نشد، حالت آفلاین فعال است.');
+                statusText.textContent = 'آفلاین ⚠️';
+            }
+        }
+
         // ============= شروع =============
         console.log('🧠 HomaAi Pro راه‌اندازی شد!');
-        console.log('✅ صفحه خانه با ۸ ویژگی خفن');
+        testConnection();
 
-        // پیام خوش‌آمدگویی در چت
+        // پیام خوش‌آمدگویی دوم بعد از ۲ ثانیه
         setTimeout(() => {
-            if (chatSection.classList.contains('active')) {
-                addMessage('ai', '🌟 به HomaAi خوش اومدی! هر سوالی داری بپرس.');
-            }
-        }, 1000);
+            addMessage('ai', '🌟 هر سوالی داری بپرس! از ساده تا پیچیده، من اینجام که کمک کنم.');
+        }, 1500);
     </script>
 </body>
 </html>
