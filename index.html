@@ -3,12 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HomaAi - هوش مصنوعی کامل</title>
+    <title>HomaAi - هوش مصنوعی سریع</title>
     
-    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    
-    <!-- فونت وزیر -->
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" />
     
     <style>
@@ -29,14 +26,13 @@
             align-items: center;
             justify-content: center;
             direction: rtl;
-            overflow: hidden;
         }
 
         .homa-container {
             width: 100%;
             max-width: 1400px;
             height: 100vh;
-            padding: 2rem 2rem 1.5rem;
+            padding: 1.5rem;
             background: radial-gradient(circle at 20% 30%, #1a1e2f, #0b0d15 80%);
             display: flex;
             flex-direction: column;
@@ -44,7 +40,6 @@
             overflow: hidden;
         }
 
-        /* افکت پس‌زمینه */
         .homa-container::before {
             content: '';
             position: absolute;
@@ -63,15 +58,14 @@
             50% { transform: scale(1.2); opacity: 0.8; }
         }
 
-        /* هدر */
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 2;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding-bottom: 1rem;
-            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            margin-bottom: 1rem;
             flex-shrink: 0;
         }
 
@@ -105,9 +99,9 @@
             align-items: center;
             gap: 0.5rem;
             background: rgba(74, 124, 255, 0.15);
-            padding: 0.4rem 1.2rem;
+            padding: 0.3rem 1rem;
             border-radius: 60px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #8aafff;
             border: 1px solid rgba(74, 124, 255, 0.2);
         }
@@ -116,7 +110,7 @@
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: #4ade80;
+            background: #fbbf24;
             animation: blink 1.5s ease-in-out infinite;
         }
 
@@ -125,7 +119,6 @@
             50% { opacity: 0.2; }
         }
 
-        /* بخش چت */
         .chat-area {
             flex: 1;
             z-index: 2;
@@ -137,11 +130,11 @@
         .messages-container {
             flex: 1;
             overflow-y: auto;
-            padding: 1rem 0.5rem;
+            padding: 0.5rem;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 1rem;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
         }
 
         .messages-container::-webkit-scrollbar {
@@ -157,16 +150,17 @@
         }
 
         .message {
-            max-width: 80%;
-            padding: 1rem 1.5rem;
-            border-radius: 20px;
+            max-width: 85%;
+            padding: 0.8rem 1.2rem;
+            border-radius: 18px;
             animation: slideIn 0.3s ease-out;
             line-height: 1.8;
             font-weight: 400;
+            font-size: 0.95rem;
         }
 
         @keyframes slideIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -184,8 +178,8 @@
 
         .message.ai .typing-indicator {
             display: flex;
-            gap: 0.5rem;
-            padding: 0.3rem 0;
+            gap: 0.4rem;
+            padding: 0.2rem 0;
         }
 
         .message.ai .typing-indicator span {
@@ -201,14 +195,13 @@
 
         @keyframes typing {
             0%, 60%, 100% { transform: translateY(0); opacity: 0.3; }
-            30% { transform: translateY(-10px); opacity: 1; }
+            30% { transform: translateY(-8px); opacity: 1; }
         }
 
-        /* ورودی */
         .input-area {
             display: flex;
-            gap: 1rem;
-            padding: 0.5rem 0;
+            gap: 0.8rem;
+            padding: 0.3rem 0;
             flex-shrink: 0;
         }
 
@@ -217,11 +210,11 @@
             background: rgba(255,255,255,0.05);
             border: 1px solid rgba(255,255,255,0.08);
             border-radius: 60px;
-            padding: 1rem 1.8rem;
+            padding: 0.8rem 1.5rem;
             color: #f0f6ff;
             font-family: 'Vazir', sans-serif;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 0.95rem;
             outline: none;
             transition: 0.3s;
         }
@@ -241,14 +234,14 @@
             background: linear-gradient(135deg, #3a6aff, #1f4ad0);
             border: none;
             border-radius: 60px;
-            padding: 0 2rem;
+            padding: 0 1.5rem;
             color: #fff;
             font-family: 'Vazir', sans-serif;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1rem;
             display: flex;
             align-items: center;
-            gap: 0.8rem;
+            gap: 0.6rem;
             cursor: pointer;
             transition: 0.3s;
             box-shadow: 0 0 40px rgba(58, 106, 255, 0.2);
@@ -265,26 +258,25 @@
             cursor: not-allowed;
         }
 
-        /* فوتر */
         .footer {
             z-index: 2;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 0.8rem;
             border-top: 1px solid rgba(255,255,255,0.04);
-            padding-top: 1rem;
+            padding-top: 0.8rem;
             margin-top: 0.5rem;
             color: #7a8bb8;
             font-weight: 400;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             flex-shrink: 0;
         }
 
         .footer-social i {
-            font-size: 1.4rem;
-            margin-left: 1rem;
+            font-size: 1.2rem;
+            margin-left: 0.8rem;
             color: #6678a3;
             transition: 0.25s;
             cursor: default;
@@ -294,50 +286,46 @@
             transform: translateY(-2px);
         }
 
-        /* ریسپانسیو */
         @media (max-width: 700px) {
             .homa-container { padding: 1rem; }
             .logo-text { font-size: 1.5rem; }
-            .status-badge { font-size: 0.7rem; padding: 0.3rem 0.8rem; }
-            .message { max-width: 95%; font-size: 0.95rem; padding: 0.8rem 1.2rem; }
-            .input-area button { padding: 0 1.2rem; font-size: 0.9rem; }
-            .input-area input { font-size: 0.9rem; padding: 0.8rem 1.2rem; }
-            .footer { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+            .status-badge { font-size: 0.7rem; padding: 0.2rem 0.8rem; }
+            .message { max-width: 95%; font-size: 0.9rem; padding: 0.7rem 1rem; }
+            .input-area button { padding: 0 1rem; font-size: 0.85rem; }
+            .input-area input { font-size: 0.85rem; padding: 0.7rem 1rem; }
+            .footer { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
         }
     </style>
 </head>
 <body>
     <div class="homa-container">
-        <!-- هدر -->
         <header class="header">
             <div class="logo-area">
                 <i class="fas fa-brain logo-icon"></i>
                 <span class="logo-text">HomaAi</span>
             </div>
             <div class="status-badge">
-                <span class="status-dot"></span>
-                <span id="statusText">آماده</span>
+                <span class="status-dot" id="statusDot"></span>
+                <span id="statusText">راه‌اندازی...</span>
             </div>
         </header>
 
-        <!-- بخش چت -->
         <section class="chat-area">
             <div class="messages-container" id="messagesContainer">
                 <div class="message ai">
                     <i class="fas fa-robot" style="margin-left: 0.5rem; color: #4a7cff;"></i>
-                    سلام! من HomaAi هستم. هر سوالی داری، بپرس! 🤖
+                    سلام! من HomaAi هستم. دارم مغزم رو آماده می‌کنم... ⏳
                 </div>
             </div>
 
             <div class="input-area">
-                <input type="text" id="userInput" placeholder="سوالت رو اینجا بپرس..." />
-                <button id="sendButton">
+                <input type="text" id="userInput" placeholder="سوالت رو اینجا بپرس..." disabled />
+                <button id="sendButton" disabled>
                     <i class="fas fa-paper-plane"></i> بفرست
                 </button>
             </div>
         </section>
 
-        <!-- فوتر -->
         <footer class="footer">
             <div class="footer-social">
                 <i class="fab fa-twitter"></i>
@@ -345,12 +333,12 @@
                 <i class="fab fa-linkedin"></i>
             </div>
             <div>
-                <i class="fas fa-microchip"></i> مغز: Transformer.js
+                <i class="fas fa-microchip"></i> مغز: GPT-2 (سبک)
             </div>
         </footer>
     </div>
 
-    <!-- ============ مغز هوش مصنوعی ============ -->
+    <!-- ============ مغز هوش مصنوعی (نسخه سریع) ============ -->
     <script type="importmap">
         {
             "imports": {
@@ -362,103 +350,25 @@
     <script type="module">
         import { pipeline, env } from '@xenova/transformers';
 
-        // تنظیمات
+        // تنظیمات برای سرعت بیشتر
         env.allowLocalModels = false;
         env.useBrowserCache = true;
+        env.localModelPath = '/models/';
 
         // المان‌ها
         const messagesContainer = document.getElementById('messagesContainer');
         const userInput = document.getElementById('userInput');
         const sendButton = document.getElementById('sendButton');
         const statusText = document.getElementById('statusText');
+        const statusDot = document.getElementById('statusDot');
 
         let isProcessing = false;
         let chatHistory = [];
-
-        // ============= مدل هوش مصنوعی =============
         let generator = null;
+        let isModelReady = false;
 
-        async function loadModel() {
-            try {
-                statusText.textContent = 'در حال بارگذاری مغز...';
-                statusText.style.color = '#fbbf24';
-                sendButton.disabled = true;
-
-                // استفاده از مدل Phi-3-mini (سبک و قدرتمند)
-                generator = await pipeline('text-generation', 'Xenova/phi-3-mini-4k-instruct', {
-                    quantized: true,
-                    progress_callback: (progress) => {
-                        if (progress.status === 'downloading') {
-                            statusText.textContent = `دانلود ${Math.round(progress.progress * 100)}%`;
-                        }
-                    }
-                });
-
-                statusText.textContent = 'آنلاین ✅';
-                statusText.style.color = '#4ade80';
-                sendButton.disabled = false;
-                
-                // پیام خوش‌آمدگویی دوباره
-                addMessage('ai', 'مغز من فعال شد! الان می‌تونم به هر سوالی جواب بدم 🚀');
-                
-            } catch (error) {
-                console.error('خطا در بارگذاری مدل:', error);
-                statusText.textContent = 'خطا در بارگذاری';
-                statusText.style.color = '#ef4444';
-                addMessage('ai', '❌ متاسفانه مغز من نتونست بارگذاری بشه. لطفاً صفحه رو رفرش کن.');
-            }
-        }
-
-        // ============= تولید پاسخ =============
-        async function generateResponse(userMessage) {
-            if (!generator) {
-                return '⏳ مغزم هنوز آماده نشده! چند لحظه صبر کن...';
-            }
-
-            try {
-                // ساخت پرامپت با تاریخچه
-                const systemPrompt = `شما یک دستیار هوشمند به نام HomaAi هستید. 
-                به فارسی پاسخ دهید. 
-                مختصر، مفید و دقیق باشید.
-                اگر پاسخ نمی‌دانید، بگویید نمی‌دانم.
-                تاریخچه مکالمه:
-                ${chatHistory.slice(-5).map(msg => `${msg.role}: ${msg.content}`).join('\n')}
-                `;
-
-                const prompt = `<|system|>
-                ${systemPrompt}
-                <|user|>
-                ${userMessage}
-                <|assistant|>`;
-
-                const result = await generator(prompt, {
-                    max_new_tokens: 512,
-                    temperature: 0.7,
-                    top_k: 50,
-                    top_p: 0.95,
-                    repetition_penalty: 1.1,
-                    do_sample: true,
-                });
-
-                // استخراج پاسخ
-                const response = result[0]?.generated_text || 'عذر می‌خوام، نتونستم جواب بدم.';
-                
-                // حذف پرامپت از پاسخ
-                let cleanResponse = response.replace(prompt, '').trim();
-                if (!cleanResponse) {
-                    cleanResponse = 'پاسخی دریافت نشد. لطفاً دوباره سوال کن.';
-                }
-
-                return cleanResponse;
-
-            } catch (error) {
-                console.error('خطا در تولید پاسخ:', error);
-                return '⚠️ خطایی در پردازش رخ داد. لطفاً دوباره تلاش کن.';
-            }
-        }
-
-        // ============= مدیریت پیام‌ها =============
-        function addMessage(type, content) {
+        // ============= پیام‌ها =============
+        function addMessage(type, content, isSystem = false) {
             const messageDiv = document.createElement('div');
             messageDiv.className = `message ${type}`;
             
@@ -471,10 +381,11 @@
             messagesContainer.appendChild(messageDiv);
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
             
-            // ذخیره تاریخچه
-            chatHistory.push({ role: type === 'user' ? 'user' : 'assistant', content });
-            if (chatHistory.length > 20) {
-                chatHistory = chatHistory.slice(-20);
+            if (!isSystem) {
+                chatHistory.push({ role: type === 'user' ? 'user' : 'assistant', content });
+                if (chatHistory.length > 10) {
+                    chatHistory = chatHistory.slice(-10);
+                }
             }
         }
 
@@ -498,18 +409,95 @@
             if (typing) typing.remove();
         }
 
+        // ============= بارگذاری مدل (نسخه سبک) =============
+        async function loadModel() {
+            try {
+                statusText.textContent = 'در حال دانلود مغز...';
+                statusDot.style.background = '#fbbf24';
+                sendButton.disabled = true;
+                userInput.disabled = true;
+
+                // استفاده از GPT-2 (سبک‌تر و سریع‌تر)
+                generator = await pipeline('text-generation', 'Xenova/gpt2', {
+                    quantized: true,
+                    progress_callback: (progress) => {
+                        if (progress.status === 'downloading') {
+                            const percent = Math.round(progress.progress * 100);
+                            statusText.textContent = `دانلود ${percent}%`;
+                            if (percent === 100) {
+                                statusText.textContent = 'آماده‌سازی...';
+                            }
+                        }
+                    }
+                });
+
+                // تست اولیه
+                await generator('سلام', { max_new_tokens: 5 });
+                
+                isModelReady = true;
+                statusText.textContent = 'آنلاین ✅';
+                statusDot.style.background = '#4ade80';
+                sendButton.disabled = false;
+                userInput.disabled = false;
+                userInput.focus();
+                
+                addMessage('ai', '🧠 مغزم آماده شد! هر سوالی داری بپرس.', true);
+                
+            } catch (error) {
+                console.error('خطا:', error);
+                statusText.textContent = 'خطا ❌';
+                statusDot.style.background = '#ef4444';
+                addMessage('ai', '❌ نتونستم مغزم رو بارگذاری کنم. لطفاً صفحه رو رفرش کن.', true);
+            }
+        }
+
+        // ============= تولید پاسخ =============
+        async function generateResponse(userMessage) {
+            if (!generator || !isModelReady) {
+                return '⏳ مغزم هنوز آماده نیست! لطفاً چند ثانیه صبر کن...';
+            }
+
+            try {
+                // ساخت پرامپت ساده
+                const prompt = `شما یک دستیار هوشمند به نام HomaAi هستید. به فارسی پاسخ دهید. 
+                سوال: ${userMessage}
+                پاسخ: `;
+
+                const result = await generator(prompt, {
+                    max_new_tokens: 150,
+                    temperature: 0.8,
+                    top_k: 40,
+                    top_p: 0.9,
+                    repetition_penalty: 1.2,
+                    do_sample: true,
+                });
+
+                let response = result[0]?.generated_text || '';
+                response = response.replace(prompt, '').trim();
+                
+                if (!response || response.length < 2) {
+                    response = 'متاسفم، نتونستم جواب درستی پیدا کنم. لطفاً سوال دیگه‌ای بپرس.';
+                }
+
+                return response;
+
+            } catch (error) {
+                console.error('خطا:', error);
+                return '⚠️ خطایی در پردازش رخ داد. دوباره تلاش کن.';
+            }
+        }
+
         // ============= ارسال پیام =============
         async function handleSend() {
             const message = userInput.value.trim();
-            if (!message || isProcessing || !generator) return;
+            if (!message || isProcessing || !isModelReady) return;
 
-            // اضافه کردن پیام کاربر
             addMessage('user', message);
             userInput.value = '';
             isProcessing = true;
             sendButton.disabled = true;
+            userInput.disabled = true;
 
-            // نمایش تایپینگ
             showTyping();
 
             try {
@@ -518,11 +506,12 @@
                 addMessage('ai', response);
             } catch (error) {
                 removeTyping();
-                addMessage('ai', '❌ خطا در پردازش درخواست. لطفاً دوباره تلاش کن.');
+                addMessage('ai', '❌ خطا در پردازش. لطفاً دوباره تلاش کن.');
                 console.error(error);
             } finally {
                 isProcessing = false;
                 sendButton.disabled = false;
+                userInput.disabled = false;
                 userInput.focus();
             }
         }
@@ -530,22 +519,23 @@
         // ============= رویدادها =============
         sendButton.addEventListener('click', handleSend);
         userInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') handleSend();
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                handleSend();
+            }
         });
 
-        // ============= بارگذاری مدل =============
+        // ============= شروع =============
         loadModel();
 
-        // ============= تست اولیه =============
+        // پیام راهنما بعد از ۵ ثانیه
         setTimeout(() => {
-            if (!generator) {
-                // اگر مدل هنوز بارگذاری نشده، پیام بده
-                addMessage('ai', '⏳ در حال آماده‌سازی مغز... لطفاً چند ثانیه صبر کن.');
+            if (!isModelReady) {
+                addMessage('ai', '⏳ دانلود مغز ممکنه چند دقیقه طول بکشه... صبور باش!', true);
             }
-        }, 2000);
+        }, 5000);
 
-        console.log('🧠 HomaAi مغز هوش مصنوعی آماده شد!');
-        console.log('🤖 مدل: Phi-3-mini-4k-instruct');
+        console.log('🧠 HomaAi در حال راه‌اندازی...');
     </script>
 </body>
 </html>
