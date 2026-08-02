@@ -1,1 +1,485 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HomaAi - هوش مصنوعی پیشرفته</title>
+    <!-- فونت وزیر بُلد -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" />
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Vazir', sans-serif;
+            font-weight: bold;
+            background: linear-gradient(135deg, #0b0e1a 0%, #1a1f35 100%);
+            color: #fff;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* پس‌زمینه با افکت ذرات */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .main-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 1400px;
+            height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* هدر */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, #f7971e, #ffd200);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+        }
+        .logo i {
+            margin-left: 12px;
+            -webkit-text-fill-color: #ffd200;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            font-size: 1.1rem;
+        }
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-links a:hover {
+            color: #ffd200;
+            transform: scale(1.05);
+        }
+        .nav-links a i {
+            font-size: 1.2rem;
+        }
+
+        .header-btn {
+            background: linear-gradient(135deg, #f7971e, #ffd200);
+            border: none;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-family: 'Vazir', sans-serif;
+            font-weight: bold;
+            font-size: 1rem;
+            color: #0b0e1a;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+        }
+        .header-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 30px rgba(255, 215, 0, 0.5);
+        }
+
+        /* بخش مرکزی چت */
+        .chat-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .chat-title {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, #ffffff, #a0aec0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 60px rgba(255, 255, 255, 0.1);
+            letter-spacing: 2px;
+        }
+        .chat-title i {
+            -webkit-text-fill-color: #ffd200;
+            margin-left: 15px;
+        }
+
+        .chat-box {
+            width: 100%;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(16px);
+            border-radius: 40px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .messages {
+            height: 200px;
+            overflow-y: auto;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+            scroll-behavior: smooth;
+        }
+        .messages::-webkit-scrollbar {
+            width: 6px;
+        }
+        .messages::-webkit-scrollbar-thumb {
+            background: #ffd200;
+            border-radius: 10px;
+        }
+
+        .msg {
+            max-width: 80%;
+            padding: 14px 22px;
+            border-radius: 30px;
+            font-size: 1rem;
+            line-height: 1.6;
+            animation: fadeIn 0.4s ease;
+        }
+        .msg.user {
+            align-self: flex-end;
+            background: linear-gradient(135deg, #f7971e, #ffd200);
+            color: #0b0e1a;
+            border-bottom-right-radius: 8px;
+        }
+        .msg.bot {
+            align-self: flex-start;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-bottom-left-radius: 8px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .input-row {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 60px;
+            padding: 6px 6px 6px 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .input-row input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 16px 0;
+            font-family: 'Vazir', sans-serif;
+            font-weight: bold;
+            font-size: 1rem;
+            color: #fff;
+            outline: none;
+        }
+        .input-row input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        .input-row button {
+            background: linear-gradient(135deg, #f7971e, #ffd200);
+            border: none;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            color: #0b0e1a;
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+        }
+        .input-row button:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 30px rgba(255, 215, 0, 0.5);
+        }
+
+        /* فوتر */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: rgba(255, 255, 255, 0.25);
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        .footer i {
+            margin: 0 6px;
+            color: #ffd200;
+        }
+        .footer a {
+            color: rgba(255, 255, 255, 0.3);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .footer a:hover {
+            color: #ffd200;
+        }
+
+        /* ریسپانسیو */
+        @media (max-width: 768px) {
+            .header {
+                flex-wrap: wrap;
+                gap: 15px;
+                justify-content: center;
+                padding: 15px 20px;
+            }
+            .nav-links {
+                gap: 15px;
+                font-size: 0.9rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .chat-title {
+                font-size: 2.2rem;
+            }
+            .chat-box {
+                padding: 18px;
+            }
+            .input-row {
+                padding: 4px 4px 4px 16px;
+            }
+            .input-row button {
+                width: 48px;
+                height: 48px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- کانواس ذرات -->
+    <canvas id="particles-canvas"></canvas>
+
+    <div class="main-container">
+
+        <!-- هدر -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-robot"></i> HomaAi
+            </div>
+            <div class="nav-links">
+                <a href="#"><i class="fas fa-home"></i> خانه</a>
+                <a href="#"><i class="fas fa-cogs"></i> ویژگی‌ها</a>
+                <a href="#"><i class="fas fa-envelope"></i> تماس</a>
+            </div>
+            <button class="header-btn">
+                <i class="fas fa-rocket"></i> شروع کنید
+            </button>
+        </header>
+
+        <!-- بخش چت -->
+        <section class="chat-area">
+            <h1 class="chat-title">
+                <i class="fas fa-comment-dots"></i> با HomaAi گفتگو کن
+            </h1>
+
+            <div class="chat-box">
+                <div class="messages" id="messages">
+                    <div class="msg bot">
+                        <i class="fas fa-robot" style="margin-left:10px;"></i>
+                        سلام! من HomaAi هستم. چطور می‌تونم کمکت کنم؟
+                    </div>
+                </div>
+                <div class="input-row">
+                    <input type="text" id="chatInput" placeholder="پیامت رو بنویس..." />
+                    <button id="sendBtn"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- فوتر -->
+        <footer class="footer">
+            <span><i class="fas fa-copyright"></i> 2026 HomaAi — تمامی حقوق محفوظ است</span>
+            <span>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </span>
+        </footer>
+    </div>
+
+    <script>
+        // ====== افکت ذرات (کانواس) ======
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        const numParticles = 80;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = (Math.random() - 0.5) * 0.8;
+                this.speedY = (Math.random() - 0.5) * 0.8;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 215, 0, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            for (let i = 0; i < numParticles; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            // خطوط اتصال
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 130) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(255, 215, 0, ${0.12 * (1 - dist / 130)})`;
+                        ctx.lineWidth = 1;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // ====== منطق چت بات ساده ======
+        const messagesContainer = document.getElementById('messages');
+        const chatInput = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendBtn');
+
+        function addMessage(text, sender) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `msg ${sender}`;
+            if (sender === 'bot') {
+                msgDiv.innerHTML = `<i class="fas fa-robot" style="margin-left:10px;"></i> ${text}`;
+            } else {
+                msgDiv.innerHTML = `<i class="fas fa-user" style="margin-left:10px;"></i> ${text}`;
+            }
+            messagesContainer.appendChild(msgDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function getBotResponse(userText) {
+            const lower = userText.toLowerCase();
+            if (lower.includes('سلام') || lower.includes('درود')) {
+                return 'سلام! خوش آمدی به HomaAi. چطور می‌تونم کمکت کنم؟';
+            } else if (lower.includes('اسم') || lower.includes('نام')) {
+                return 'من HomaAi هستم، دستیار هوشمند تو!';
+            } else if (lower.includes('خداحافظ')) {
+                return 'خداحافظ! امیدوارم دوباره ببینمت 🌟';
+            } else if (lower.includes('چطوری')) {
+                return 'عالی! ممنون که پرسیدی. چطور می‌تونم بهت کمک کنم؟';
+            } else {
+                return 'سوال خوبی پرسیدی! در حال یادگیری هستم، ولی سعی می‌کنم بهترین پاسخ رو بدم.';
+            }
+        }
+
+        function handleSend() {
+            const text = chatInput.value.trim();
+            if (!text) return;
+            addMessage(text, 'user');
+            chatInput.value = '';
+
+            // شبیه‌سازی تایپ ربات
+            setTimeout(() => {
+                const reply = getBotResponse(text);
+                addMessage(reply, 'bot');
+            }, 400 + Math.random() * 600);
+        }
+
+        sendBtn.addEventListener('click', handleSend);
+        chatInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') handleSend();
+        });
+
+        // پیام خوش‌آمدگویی اضافی بعد از 1 ثانیه
+        setTimeout(() => {
+            addMessage('🌙 من HomaAi هستم، آماده پاسخگویی به سوالاتت!', 'bot');
+        }, 1000);
+    </script>
+
+</body>
+</html>
